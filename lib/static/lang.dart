@@ -983,5 +983,499 @@ Restlessness
       "youstopped": "The time you stopped smoking",
       "change": "Change"
     }
+  },
+  "es": {
+    "tipsandfacts": [
+      "Recuerda que el tiempo está de tu lado",
+      "No te saltes comidas",
+      "Sal a caminar",
+      "Lo estás haciendo muy bien",
+      "Bebe mucha agua",
+    ],
+    "progressDescription": {
+      "1":
+          "Tu presión arterial y ritmo cardíaco comenzarán a volver a niveles normales.",
+      "2": "Tu nivel de monóxido de carbono volverá a un nivel normal",
+      "3": "Tu riesgo de ataque cardíaco disminuirá.",
+      "4": "Notarás que hueles y saboreas mejor que antes.",
+      "5": "Respirarás con más facilidad. Tu capacidad pulmonar aumentará.",
+      "6":
+          "Habrá una disminución en las crisis diarias de tabaquismo y tus posibilidades de dejar de fumar aumentarán 9 veces.",
+      "7":
+          "Tu capacidad pulmonar aumentará un 30%. Te moverás y respirarás con más comodidad. Habrá una disminución en las crisis diarias de tabaquismo.",
+      "8":
+          "La ira, ansiedad, inquietud y enojo debido al tabaquismo terminarán.",
+      "9": "Tu resistencia a la insulina se normalizará.",
+      "10":
+          "Afrontarás mejor el estrés. Las vías respiratorias de tu cuerpo se despejarán y tu tos disminuirá.",
+      "11":
+          "Tus pulmones habrán experimentado mejoras significativas de salud en capacidad y funcionamiento. Notarás con qué facilidad respiras y cuánto menos toses al esforzarte, en comparación con cuando fumabas.",
+      "12":
+          "Tu riesgo de ataque cardíaco será el mismo que el de un no fumador.",
+      "13": "Tu riesgo de cáncer de pulmón se reducirá a la mitad.",
+      "14":
+          "Tu riesgo de cáncer de pulmón será el mismo que el de un no fumador.",
+      "15": "¡Eres el mejor!"
+    },
+    "guide": {
+      "whysohard": {
+        "image": "assets/images/stress.svg",
+        "title": "¿Por qué es tan difícil dejarlo?",
+        "content": [
+          {
+            "title": "Dejarlo puede ser realmente difícil",
+            "text":
+                "Todos conocemos los riesgos para la salud de fumar, pero eso no hace que sea más fácil dejar el hábito. Ya seas un fumador adolescente ocasional o un fumador de por vida de un paquete al día, dejarlo puede ser realmente difícil.",
+          },
+          {
+            "title": "¿Por qué?",
+            "text": [
+              "Fumar tabaco es tanto una adicción física como un hábito psicológico. La nicotina de los cigarrillos proporciona una sensación temporal y adictiva de bienestar. Eliminar esa dosis regular de nicotina hace que tu cuerpo experimente síntomas físicos de abstinencia y antojos. Debido al efecto de \"sentirse bien\" de la nicotina en el cerebro, puedes recurrir a los cigarrillos como una forma rápida y confiable de mejorar tu estado de ánimo, aliviar el estrés y relajarte. Fumar también puede ser una forma de lidiar con la depresión, la ansiedad o incluso el aburrimiento. Dejarlo significa encontrar formas diferentes y más saludables de lidiar con esos sentimientos.",
+              "Fumar también está arraigado como un ritual diario. Puede ser una respuesta automática para ti fumar un cigarrillo con tu café de la mañana, mientras tomas un descanso en el trabajo o la escuela, o en tu viaje a casa al final de un día agitado. O tal vez tus amigos, familiares o colegas fuman, y se ha convertido en parte de la forma en que te relacionas con ellos.",
+            ],
+          },
+          {
+            "title": "Dejar de fumar con éxito",
+            "text":
+                "Para dejar de fumar con éxito, necesitarás abordar tanto la adicción como los hábitos y rutinas que la acompañan. Pero se puede hacer. Con el apoyo adecuado y un plan para dejarlo, cualquier fumador puede superar la adicción, incluso si lo has intentado y fallado varias veces antes."
+          }
+        ],
+      },
+      "startplan": {
+        "image": "assets/images/support-notes-colour.svg",
+        "title": "Tu Plan para Dejar de Fumar",
+        "content": [
+          {
+            "title": "Preguntas para hacerte a ti mismo",
+            "text":
+                "Tómate el tiempo para pensar qué tipo de fumador eres, qué momentos de tu vida requieren un cigarrillo y por qué. Esto te ayudará a identificar qué consejos, técnicas o terapias pueden ser más beneficiosos para ti."
+          },
+          {
+            "title":
+                "Dile a tu familia, amigos y compañeros de trabajo que planeas dejarlo.",
+            "text":
+                "Informa a tus amigos y familiares sobre tu plan para dejar de fumar y diles que necesitas su apoyo y aliento para lograrlo. Busca un compañero que también quiera dejar de fumar. Pueden ayudarse mutuamente a superar los momentos difíciles."
+          },
+          {
+            "title":
+                "Anticipa y planifica los desafíos que enfrentarás al dejarlo.",
+            "text":
+                "La mayoría de las personas que vuelven a fumar lo hacen dentro de los primeros tres meses. Puedes ayudarte a superarlo preparándote con anticipación para los desafíos comunes, como la abstinencia de nicotina y los antojos de cigarrillos."
+          },
+          {
+            "title": "Identifica tus desencadenantes para fumar",
+            "text":
+                "Una de las mejores cosas que puedes hacer para ayudarte a dejarlo es identificar las cosas que te hacen querer fumar, incluyendo situaciones específicas, actividades, sentimientos y personas."
+          },
+          {
+            "title":
+                "Elimina los cigarrillos y otros productos de tabaco de tu casa, coche y trabajo.",
+            "text":
+                "Tira todos tus cigarrillos, encendedores, ceniceros y fósforos. Lava tu ropa y refresca todo lo que huela a humo. Lava tu coche, limpia tus cortinas y alfombras, y vaporiza tus muebles."
+          },
+          {
+            "title": "Habla con tu médico sobre obtener ayuda para dejarlo.",
+            "text":
+                "Tu médico puede recetarte medicamentos para ayudar con los síntomas de abstinencia. Si no puedes ver a un médico, puedes obtener muchos productos sin receta en tu farmacia local, incluyendo parches de nicotina, pastillas y chicles."
+          }
+        ]
+      },
+      "unpleasent": {
+        "image": "assets/images/sad.svg",
+        "title": "¿Fumas para aliviar sentimientos desagradables?",
+        "content": [
+          {
+            "title": "Sentimientos desagradables",
+            "text":
+                "Muchos de nosotros fumamos para manejar sentimientos desagradables como el estrés, la depresión, la soledad y la ansiedad. Cuando tienes un mal día, puede parecer que los cigarrillos son tu único amigo. Por mucho consuelo que proporcionen los cigarrillos, es importante recordar que hay formas más saludables y efectivas de mantener los sentimientos desagradables bajo control. Estas pueden incluir hacer ejercicio, meditar, estrategias de relajación o simples ejercicios de respiración.",
+          },
+          {
+            "title": "Lidiar con situaciones estresantes",
+            "text":
+                "Para muchas personas, un aspecto importante de dejar de fumar es encontrar formas alternativas de manejar estos sentimientos difíciles sin recurrir a los cigarrillos. Incluso cuando los cigarrillos ya no sean parte de tu vida, los sentimientos dolorosos y desagradables que pueden haberte llevado a fumar en el pasado seguirán existiendo. Por lo tanto, vale la pena dedicar algo de tiempo a pensar en las diferentes formas en que pretendes lidiar con situaciones estresantes y las irritaciones diarias que normalmente te harían encender un cigarrillo.",
+          }
+        ]
+      },
+      "avoidingcommon": {
+        "image": "assets/images/coach_monochromatic.svg",
+        "title": "Consejos para evitar desencadenantes comunes",
+        "content": [
+          {
+            "title": "Alcohol",
+            "text": [
+              "Muchas personas fuman cuando beben. Intenta cambiar a bebidas no alcohólicas o beber solo en lugares donde está prohibido fumar en el interior. Alternativamente, prueba a picar frutos secos, masticar un palillo de cóctel o chupar una pajita."
+            ]
+          },
+          {
+            "title": "Otros fumadores",
+            "text": [
+              "Cuando amigos, familiares y compañeros de trabajo fuman a tu alrededor, puede ser doblemente difícil dejarlo o evitar una recaída. Habla sobre tu decisión de dejarlo para que la gente sepa que no podrán fumar cuando estés en el coche con ellos o tomando un café juntos. En tu lugar de trabajo, encuentra no fumadores para tomar tus descansos o encuentra otras cosas que hacer, como dar un paseo."
+            ]
+          },
+          {
+            "title": "Final de una comida",
+            "text": [
+              "Para algunos fumadores, terminar una comida significa encender un cigarrillo, y la perspectiva de renunciar a eso puede parecer desalentadora. Sin embargo, puedes intentar reemplazar ese momento después de una comida con algo más, como una pieza de fruta, un postre saludable, un cuadrado de chocolate o un chicle."
+            ]
+          }
+        ]
+      },
+      "firsttwoweeks": {
+        "image": "assets/images/checklist.svg",
+        "title": "Las Primeras 2 Semanas",
+        "content": [
+          {
+            "title": "Las primeras dos semanas son críticas para tu éxito",
+            "text": [
+              "Si puedes superar las primeras dos semanas, tu probabilidad de éxito es mucho mayor. Por lo tanto, es importante darte la mejor oportunidad posible durante estas semanas críticas.",
+              "Las primeras dos semanas se tratan de distracciones, mantenerte ocupado y ser bueno contigo mismo. Mantente ocupado con actividades divertidas y de bajo estrés y evita las de alto estrés."
+            ]
+          },
+          {
+            "title": "Mantente Ocupado",
+            "text": [
+              "Mantén tus manos ocupadas. A algunas personas les gusta usar un bolígrafo, una pajita o un revolvedor de café.",
+              "Bebe mucha agua.",
+              "Si simplemente te sientas ahí con tus antojos, les estás dando espacio para crecer.",
+              "Relájate y respira profundamente."
+            ]
+          },
+          {
+            "title": "Evita Situaciones de Alto Riesgo",
+            "text": [
+              "No pases el tiempo con fumadores. Es como un adicto al crack pasando el tiempo con adictos al crack. No importa cuán amigables y solidarios sean tus amigos fumadores, siguen siendo un entorno de alto riesgo durante al menos los primeros meses.",
+              "Practica decir: \"No, gracias, ya no fumo.\"",
+              "Entiende que te encontrarás con situaciones de alto riesgo que no habías pensado. Si te encuentras con un desencadenante, planea levantarte e irte rápidamente.",
+              "Un cambio de escenario puede hacer toda la diferencia."
+            ]
+          },
+          {
+            "title": "Habla Contigo Mismo",
+            "text": [
+              "La mayoría de los antojos solo duran de 10 a 20 minutos. Distráete y los antojos pasarán. Cuando pienses en fumar, habla contigo mismo y mantente ocupado.",
+              "\"Me niego a creer que fumar es más poderoso que yo.\"\n\"No le daré más poder a fumar sobre mi vida.\"\n\"Elegí ser un no fumador.\"",
+            ]
+          },
+        ],
+      },
+      "copingwithsymptomps": {
+        "image": "assets/images/stressli.svg",
+        "title": "Lidiar con los síntomas",
+        "content": [
+          {
+            "title": "Síntomas",
+            "text":
+                "Una vez que dejes de fumar, es probable que experimentes una serie de síntomas físicos mientras tu cuerpo se retira de la nicotina. La abstinencia de nicotina comienza rápidamente, generalmente comenzando dentro de una hora después del último cigarrillo y alcanzando su punto máximo dos o tres días después. Los síntomas de abstinencia pueden durar desde unos días hasta varias semanas y varían de persona a persona.",
+          },
+          {
+            "title": "Síntomas comunes",
+            "text": """Antojos de cigarrillos
+Irritabilidad, frustración o ira
+Ansiedad o nerviosismo
+Dificultad para concentrarse
+Inquietud
+"""
+          },
+          {
+            "title": "Temporal",
+            "text":
+                "Por desagradables que sean estos síntomas de abstinencia, es importante recordar que son solo temporales. Mejorarán en unas semanas a medida que las toxinas se eliminen de tu cuerpo. Mientras tanto, informa a tus amigos y familiares que no serás tu yo habitual y pídeles su comprensión."
+          },
+          {
+            "title": "¿Cuánto duran los síntomas de abstinencia de nicotina?",
+            "text":
+                "La nicotina sale de tu cuerpo 72 horas después de dejar de fumar. Los síntomas de abstinencia de nicotina generalmente alcanzan su punto máximo 2 a 3 días después de dejarlo, y desaparecen dentro de 1 a 3 meses. Se necesitan al menos 3 meses para que la química de tu cerebro vuelva a la normalidad después de dejar de fumar. Los últimos dos síntomas en desaparecer suelen ser la irritabilidad y la baja energía. Cualquier programa efectivo para dejar de fumar tiene que tener en cuenta este largo período de ajuste. Es por eso que algunos médicos recomiendan dejar la nicotina lentamente con terapia de reemplazo de nicotina. En resumen, la mayoría de las personas comienzan a sentirse mejor después de 1 semana, y los síntomas generalmente desaparecen dentro de 3 meses."
+          }
+        ]
+      },
+      "managecravings": {
+        "image": "assets/images/sleep.svg",
+        "title": "Manejar los antojos de cigarrillos",
+        "content": [
+          {
+            "title": "Pronto pasará",
+            "text":
+                "Aunque evitar los desencadenantes del tabaquismo ayudará a reducir tu impulso de fumar, probablemente no puedas evitar los antojos de cigarrillos por completo. Afortunadamente, los antojos no duran mucho, típicamente unos 5 o 10 minutos. Si te sientes tentado a encender un cigarrillo, recuérdate que el antojo pronto pasará e intenta esperar a que pase. Ayuda estar preparado de antemano con estrategias para lidiar con los antojos."
+          },
+          {
+            "title": "Distráete",
+            "text":
+                "Lava los platos, enciende la TV, toma una ducha o llama a un amigo. La actividad no importa mientras mantenga tu mente alejada de fumar."
+          },
+          {
+            "title": "Recuerda por qué lo dejaste",
+            "text":
+                "Concéntrate en tus razones para dejarlo, incluyendo los beneficios para la salud (reducir tu riesgo de enfermedades cardíacas y cáncer de pulmón, por ejemplo), mejorar tu apariencia, ahorrar dinero y aumentar tu autoestima."
+          },
+          {
+            "title": "Sal de una situación tentadora",
+            "text":
+                "Dónde estás o lo que estás haciendo puede estar desencadenando el antojo. Si es así, un cambio de escenario puede hacer toda la diferencia."
+          },
+          {
+            "title": "Recompénsate",
+            "text":
+                "Refuerza tus victorias. Cada vez que triunfes sobre un antojo, date una recompensa para mantenerte motivado."
+          },
+          {
+            "title": "Encuentra un sustituto oral",
+            "text":
+                "Ten otras cosas a mano para poner en tu boca cuando los antojos golpeen. Prueba con mentas, palitos de zanahoria o apio, chicle o semillas de girasol. O chupa una pajita."
+          },
+          {
+            "title": "Mantén tu mente ocupada",
+            "text":
+                "Lee un libro o una revista, escucha algo de música que te guste, haz un crucigrama o un sudoku, o juega un juego en línea."
+          },
+          {
+            "title": "Mantén tus manos ocupadas",
+            "text":
+                "Las pelotas antiestrés, lápices o clips son buenos sustitutos para satisfacer esa necesidad de estimulación táctil."
+          },
+          {
+            "title": "Cepíllate los dientes",
+            "text":
+                "La sensación de limpieza recién cepillada puede ayudar a desterrar los antojos de cigarrillos."
+          },
+          {
+            "title": "Bebe agua",
+            "text":
+                "Bebe lentamente un gran vaso de agua. No solo ayudará a que pase el antojo, sino que mantenerse hidratado ayuda a minimizar los síntomas de abstinencia de nicotina."
+          },
+          {
+            "title": "Enciende algo más",
+            "text":
+                "En lugar de encender un cigarrillo, enciende una vela o algo de incienso."
+          },
+          {
+            "title": "Actívate",
+            "text":
+                "Ve a dar un paseo, haz algunos saltos o flexiones, prueba algunos estiramientos de yoga o corre alrededor de la manzana."
+          },
+          {
+            "title": "Intenta relajarte",
+            "text":
+                "Haz algo que te calme, como tomar un baño caliente, meditar, leer un libro o practicar ejercicios de respiración profunda."
+          },
+          {
+            "title": "Ve a algún lugar donde no se permita fumar",
+            "text":
+                "Entra en un edificio público, tienda, centro comercial, cafetería o cine, por ejemplo."
+          }
+        ]
+      },
+      "preventweightgain": {
+        "image": "assets/images/eating.svg",
+        "title": "Prevenir el aumento de peso",
+        "content": [
+          {
+            "title": "Ganar peso",
+            "text":
+                "Fumar actúa como un supresor del apetito, por lo que ganar peso es una preocupación común para muchos de nosotros cuando decidimos dejar los cigarrillos. Incluso podrías estar usándolo como una razón para no dejarlo. Si bien es cierto que muchos fumadores aumentan de peso dentro de los seis meses después de dejar de fumar, el aumento suele ser pequeño, alrededor de cinco libras en promedio, y ese aumento inicial disminuye con el tiempo. También es importante recordar que cargar unas libras extra durante unos meses no dañará tu corazón tanto como fumar. Sin embargo, ganar peso NO es inevitable cuando dejas de fumar."
+          },
+          {
+            "title": "Ganar peso NO es inevitable",
+            "text":
+                "Fumar amortigua tu sentido del olfato y el gusto, por lo que después de dejarlo, la comida a menudo parecerá más atractiva. También puedes ganar peso si reemplazas la gratificación oral de fumar con comer alimentos reconfortantes poco saludables. Por lo tanto, es importante encontrar otras formas saludables de lidiar con sentimientos desagradables como el estrés, la ansiedad o el aburrimiento en lugar de comer sin pensar y emocionalmente."
+          },
+          {
+            "title": "Cuídate",
+            "text":
+                "En lugar de recurrir a los cigarrillos o la comida cuando te sientas estresado, ansioso o deprimido, aprende nuevas formas de calmarte rápidamente. Escucha música edificante, juega con una mascota o toma una taza de té caliente, por ejemplo."
+          },
+          {
+            "title": "Come comidas saludables y variadas",
+            "text":
+                "Come muchas frutas, verduras y grasas saludables. Evita los alimentos azucarados, refrescos, alimentos fritos y comida rápida."
+          },
+          {
+            "title": "Aprende a comer conscientemente",
+            "text":
+                "Comer emocionalmente tiende a ser automático y prácticamente sin pensar. Es fácil acabarse un bote de helado mientras estás distraído frente al televisor o mirando tu teléfono. Pero al eliminar las distracciones cuando comes, es más fácil concentrarte en cuánto estás comiendo y sintonizar con tu cuerpo y cómo te sientes realmente. ¿Realmente sigues teniendo hambre o estás comiendo por otra razón?"
+          },
+          {
+            "title": "Bebe mucha agua",
+            "text":
+                "Beber al menos seis a ocho vasos de 8 onzas te ayudará a sentirte lleno y evitará que comas cuando no tengas hambre. El agua también ayudará a eliminar las toxinas de tu cuerpo."
+          },
+          {
+            "title": "Da un paseo",
+            "text":
+                "No solo te ayudará a quemar calorías y mantener el peso bajo control, sino que también ayudará a aliviar los sentimientos de estrés y frustración que acompañan la abstinencia del tabaco."
+          },
+          {
+            "title": "Picar alimentos sin culpa",
+            "text":
+                "Buenas opciones incluyen chicle sin azúcar, palitos de zanahoria y apio, o tiras de pimiento o jícama."
+          },
+        ]
+      },
+      "medication": {
+        "image": "assets/images/Drcorona.svg",
+        "title": "Medicamentos y terapia para ayudarte a dejarlo",
+        "content": [
+          {
+            "title": "Los medicamentos ayudan",
+            "text":
+                "Hay muchos métodos diferentes que han ayudado con éxito a las personas a dejar el hábito de fumar. Aunque puedas tener éxito con el primer método que pruebes, es más probable que tengas que probar varios métodos diferentes o una combinación de tratamientos para encontrar los que funcionen mejor para ti."
+          },
+          {
+            "title": "Medicamentos",
+            "text":
+                "Los medicamentos para dejar de fumar pueden aliviar los síntomas de abstinencia y reducir los antojos. Son más efectivos cuando se usan como parte de un programa integral para dejar de fumar monitoreado por tu médico. Habla con tu médico sobre tus opciones y si un medicamento para dejar de fumar es adecuado para ti. Las opciones aprobadas por la Administración de Alimentos y Medicamentos de EE. UU. (FDA) son:"
+          },
+          {
+            "title": "Terapia de reemplazo de nicotina",
+            "text":
+                "La terapia de reemplazo de nicotina implica \"reemplazar\" los cigarrillos con otros sustitutos de nicotina, como chicle de nicotina, parche, pastilla, inhalador o spray nasal. Alivia algunos de los síntomas de abstinencia al entregar pequeñas y constantes dosis de nicotina en tu cuerpo sin los alquitranes y gases venenosos que se encuentran en los cigarrillos. Este tipo de tratamiento te ayuda a concentrarte en romper tu adicción psicológica y facilita la concentración en aprender nuevos comportamientos y habilidades de afrontamiento."
+          },
+          {
+            "title": "Medicación sin nicotina",
+            "text":
+                "Estos medicamentos te ayudan a dejar de fumar reduciendo los antojos y los síntomas de abstinencia sin el uso de nicotina. Medicamentos como bupropión (Zyban) y varenicline (Chantix, Champix) están destinados solo para uso a corto plazo."
+          },
+          {
+            "title": "Terapias alternativas",
+            "text":
+                "Hay varias cosas que puedes hacer para dejar de fumar que no implican terapia de reemplazo de nicotina, vapeo o medicamentos recetados. Estas incluyen:"
+          },
+          {
+            "title": "Hipnosis",
+            "text":
+                "Esta es una opción popular que ha producido buenos resultados para muchos fumadores que luchan por dejarlo. Olvida cualquier cosa que hayas visto de hipnotistas de escenario, la hipnosis funciona llevándote a un estado de profunda relajación donde estás abierto a sugerencias que fortalecen tu resolución de dejar de fumar y aumentan tus sentimientos negativos hacia los cigarrillos."
+          },
+          {
+            "title": "Acupuntura",
+            "text":
+                "Una de las técnicas médicas más antiguas conocidas, se cree que la acupuntura funciona desencadenando la liberación de endorfinas (analgésicos naturales) que permiten que el cuerpo se relaje. Como ayuda para dejar de fumar, la acupuntura puede ser útil para manejar los síntomas de abstinencia del tabaco."
+          },
+          {
+            "title": "Terapia Conductual",
+            "text":
+                "La adicción a la nicotina está relacionada con los comportamientos o rituales habituales involucrados en fumar. La terapia conductual se enfoca en aprender nuevas habilidades de afrontamiento y romper esos hábitos."
+          },
+          {
+            "title": "Terapias Motivacionales",
+            "text":
+                "Los libros de autoayuda y sitios web pueden proporcionar varias formas de motivarte para dejar de fumar. Un ejemplo bien conocido es calcular los ahorros monetarios. Algunas personas han podido encontrar la motivación para dejarlo simplemente calculando cuánto dinero ahorrarán. Puede ser suficiente para pagar unas vacaciones de verano."
+          },
+        ]
+      },
+      "ifyouslip": {
+        "image": "assets/images/countingstars.svg",
+        "title": "Qué hacer si caes o recaes",
+        "content": [
+          {
+            "title": "Completamente normal",
+            "text":
+                "La mayoría de las personas intentan dejar de fumar varias veces antes de dejarlo definitivamente, así que no te castigues si caes y fumas un cigarrillo. En su lugar, convierte la recaída en un rebote aprendiendo de tu error. Analiza qué sucedió justo antes de que volvieras a fumar, identifica los desencadenantes o puntos problemáticos que encontraste y haz un nuevo plan para dejar de fumar que los elimine."
+          },
+          {
+            "title": "No es el fin",
+            "text":
+                "También es importante enfatizar la diferencia entre un desliz y una recaída. Si empiezas a fumar de nuevo, no significa que no puedas volver al camino. Puedes elegir aprender del desliz y dejar que te motive a intentarlo con más fuerza o puedes usarlo como una excusa para volver a tu hábito de fumar. Pero la elección es tuya. Un desliz no tiene que convertirse en una recaída completa."
+          },
+          {
+            "title": "No eres un fracaso si te deslizas",
+            "text": "No significa que no puedas dejarlo definitivamente."
+          },
+          {
+            "title": "No dejes que un desliz se convierta en un derrumbe",
+            "text":
+                "Tira el resto del paquete. Es importante volver al camino de no fumar lo antes posible."
+          },
+          {
+            "title": "Mira tu registro de abandono y siéntete bien",
+            "text":
+                "Mira tu registro de abandono y siéntete bien por el tiempo que pasaste sin fumar."
+          },
+          {
+            "title": "Encuentra el desencadenante",
+            "text":
+                "¿Qué fue exactamente lo que te hizo fumar de nuevo? Decide cómo lidiarás con ese problema la próxima vez que surja."
+          },
+          {
+            "title": "Aprende de tu experiencia",
+            "text": "¿Qué ha sido lo más útil? ¿Qué no funcionó?"
+          },
+          {
+            "title": "¿Estás usando un medicamento para ayudarte a dejarlo?",
+            "text":
+                "Llama a tu médico si empiezas a fumar de nuevo. Algunos medicamentos no se pueden usar si estás fumando al mismo tiempo."
+          },
+        ],
+      },
+    },
+    "guideps": {
+      "guideto": "Tu guía para\nDejar de Fumar",
+      "guides": "Guías",
+      "search": "Buscar"
+    },
+    "home": {
+      "wallet": "Cartera",
+      "progress": "Progreso",
+      "guide": "Guía",
+      "rewards": "Recompensas",
+      "minafter": "MINUTOS DESPUÉS",
+      "daysafter": "DESPUÉS DE X DÍAS",
+      "timePassed": "Tiempo sin fumar",
+      "moneyEarned": "Dinero total ahorrado",
+      "cigarratesnotsmoked": "Cigarrillos no fumados",
+      "day": "Día",
+      "minute": "Minuto",
+      "second": "Segundo",
+      "hour": "Hora",
+      "resetall": "¡No te rindas!",
+      "resetallq":
+          "Tropezar en el camino al éxito no es un fracaso. Rendirse sí lo es.",
+      "reset": "Reiniciar",
+      "cancel": "Cancelar",
+      "settings": "Ajustes",
+      "reason": "Razones"
+    },
+    "process": {
+      "daysleft": "días restantes",
+      "minleft": "minutos restantes",
+      "completed": "Completado"
+    },
+    "wallet": {
+      "balance": "Saldo",
+      "newtransaction": "Añadir Nueva Transacción",
+      "title": "Título",
+      "description": "Descripción",
+      "amount": "Cantidad de dinero",
+      "add": "Añadir",
+      "daily": "Diario",
+      "weekly": "Semanal",
+      "monthly": "Mensual",
+      "yearly": "Anual"
+    },
+    "reason": {
+      "addnew": "Añadir una nueva razón",
+      "somegoodreasons": "Algunas Buenas Razones",
+      "reason": "Escribe aquí"
+    },
+    "misc": {
+      "areusuredelete": "¿Estás seguro de que deseas eliminar este elemento?",
+      "confirm": "Confirmar",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "welcome": {
+      "welcometext": "Estás tomando una gran decisión",
+      "tellreason": "Antes de empezar, dinos por qué quieres dejar de fumar",
+      "reasonhint": "Quiero dejar de fumar porque...",
+      "weneedtoknow": "Algunas cosas que necesitamos saber",
+      "howmanyperday": "¿Cuántos cigarrillos fumas al día?",
+      "howmuchpercigcost": "¿Cuánto te cuesta un cigarrillo?",
+      "choosecurrency": "Elige tu moneda",
+      "start": "¡Empezar ahora!",
+      "addtolist": "Añadir a la lista"
+    },
+    "settings": {
+      "save": "Guardar",
+      "youstopped": "El momento en que dejaste de fumar",
+      "change": "Cambiar"
+    }
   }
 };

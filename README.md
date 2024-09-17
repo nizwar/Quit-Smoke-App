@@ -9,7 +9,7 @@ An app I originally made for my father to help him quit smoking. Helps you see h
 - Reward yourself with the money you earned and keep track of it.
 - Use our guide to find answers and make the process way easier.
 - See how many cigarrates you've not smoked.
-- Supports English and Turkish
+- Supports English, Turkish and Spanish
 - List your reasons
 
 ## Screens
@@ -20,4 +20,5 @@ An app I originally made for my father to help him quit smoking. Helps you see h
 # Available On
 
 [<img width="300" src="screens/google-play-badge.png"/>](https://play.google.com/store/apps/details?id=com.jmsc.quitsmoke)
+
 
