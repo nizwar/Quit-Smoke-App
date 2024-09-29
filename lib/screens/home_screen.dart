@@ -26,7 +26,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Cigaratte cigaraManager;
+  late Cigaratte cigaraManager;
   String lang = "";
   String currency = "";
   String tiptext = "";
@@ -34,12 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> loadData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
-    currency = pref.getString("currency");
+    currency = pref.getString("currency") ?? "";
 
     cigaraManager = Cigaratte(
-        dailyCigarattes: pref.getInt("dailycigarattes"),
-        pricePerCigaratte: pref.getDouble("pricePerCigaratte"),
-        startDate: DateTime.parse(pref.getString("startTime")));
+      dailyCigarattes: pref.getInt("dailycigarattes") ?? 0,
+      pricePerCigaratte: pref.getDouble("pricePerCigaratte") ?? 0,
+      startDate: DateTime.parse(pref.getString("startTime") ?? DateTime.now().toString()),
+      lang: lang,
+    );
   }
 
   int lastRndInt = -1;
@@ -54,8 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     Random rnd = new Random();
     int rndInt = rnd.nextInt(langs[lang]["tipsandfacts"].length);
-    while (rndInt == lastRndInt)
-      rndInt = rnd.nextInt(langs[lang]["tipsandfacts"].length);
+    while (rndInt == lastRndInt) rndInt = rnd.nextInt(langs[lang]["tipsandfacts"].length);
     lastRndInt = rndInt;
     tiptext = langs[lang]["tipsandfacts"][rndInt];
     tipOpacity = 1;
@@ -65,8 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     Timer.periodic(Duration(seconds: 10), (timer) {
       tipOpacity = 1;
-      tiptext = langs[lang]["tipsandfacts"]
-          [rnd.nextInt(langs[lang]["tipsandfacts"].length)];
+      tiptext = langs[lang]["tipsandfacts"][rnd.nextInt(langs[lang]["tipsandfacts"].length)];
       setState(() {});
       Timer(Duration(seconds: 8), () {
         tipOpacity = 0;
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   showAlertDialog(BuildContext context) {
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = TextButton(
       child: Text(
         "${langs[lang]["home"]["cancel"]}",
       ),
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.of(context).pop();
       },
     );
-    Widget helpButton = FlatButton(
+    Widget helpButton = TextButton(
       child: Text(
         "${langs[lang]["guide"]["ifyouslip"]["title"]}",
       ),
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }));
       },
     );
-    Widget helpButton2 = FlatButton(
+    Widget helpButton2 = TextButton(
       child: Text(
         "${langs[lang]["guide"]["managecravings"]["title"]}",
       ),
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }));
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = TextButton(
       child: Text(
         "${langs[lang]["home"]["reset"]}",
         style: TextStyle(color: Colors.red),
@@ -144,7 +144,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (cigaraManager == null) return Text("");
     Size sc = MediaQuery.of(context).size;
     SizeConfig().init(context);
     return Scaffold(
@@ -164,11 +163,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 CustomPaint(
                   painter: ProgressPainter(
-                    completedPercentage: cigaraManager.getdayPercentage,
+                    completedPercentage: cigaraManager.getdayPercentage ,
                     circleWidth: 15,
                     defaultCircleColor: Colors.lightGreen,
-                    percentageCompletedCircleColor:
-                        Colors.grey.withOpacity(0.2),
+                    percentageCompletedCircleColor: Colors.grey.withOpacity(0.2),
                   ),
                   child: Center(
                     child: Column(
@@ -176,14 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           '${cigaraManager.getdayPercentage.toStringAsFixed(1)}%',
-                          style: TextStyle(
-                              fontSize: getProportionateScreenWidth(52),
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                    color: kShadowColor.withOpacity(.2),
-                                    blurRadius: 32)
-                              ]),
+                          style: TextStyle(fontSize: getProportionateScreenWidth(52), fontWeight: FontWeight.bold, shadows: [Shadow(color: kShadowColor.withOpacity(.2), blurRadius: 32)]),
                         ),
                         Text(
                           '${langs[lang]["home"]["day"].toUpperCase()} ${cigaraManager.calculatePassedTime().inDays + 1}',
@@ -224,11 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: getProportionateScreenWidth(15),
                 ),
-                buildCategoryCard(sc, context,
-                    color: Colors.green,
-                    icon: Icons.account_balance_wallet,
-                    text: "${langs[lang]["home"]["wallet"]}",
-                    id: "wallet", onTap: () {
+                buildCategoryCard(sc, context, color: Colors.green, icon: Icons.account_balance_wallet, text: "${langs[lang]["home"]["wallet"]}", id: "wallet", onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
                     return WalletScreen(
                       cigaratteManager: cigaraManager,
@@ -238,11 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: getProportionateScreenWidth(15),
                 ),
-                buildCategoryCard(sc, context,
-                    color: Colors.blue,
-                    icon: Icons.timelapse,
-                    text: "${langs[lang]["home"]["progress"]}",
-                    id: "progress", onTap: () {
+                buildCategoryCard(sc, context, color: Colors.blue, icon: Icons.timelapse, text: "${langs[lang]["home"]["progress"]}", id: "progress", onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
                     return ProgressPage(
                       cigaratteManager: cigaraManager,
@@ -252,11 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: getProportionateScreenWidth(15),
                 ),
-                buildCategoryCard(sc, context,
-                    color: Colors.red,
-                    icon: Icons.book,
-                    text: "${langs[lang]["home"]["guide"]}",
-                    id: "guide", onTap: () {
+                buildCategoryCard(sc, context, color: Colors.red, icon: Icons.book, text: "${langs[lang]["home"]["guide"]}", id: "guide", onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
                     return GuideScreen(
                       cigaratteManager: cigaraManager,
@@ -266,11 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: getProportionateScreenWidth(15),
                 ),
-                buildCategoryCard(sc, context,
-                    color: Colors.deepPurple,
-                    icon: Icons.bolt,
-                    text: "${langs[lang]["home"]["reason"]}",
-                    id: "reasons", onTap: () {
+                buildCategoryCard(sc, context, color: Colors.deepPurple, icon: Icons.bolt, text: "${langs[lang]["home"]["reason"]}", id: "reasons", onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
                     return ReasonScreen();
                   }));
@@ -278,11 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: getProportionateScreenWidth(15),
                 ),
-                buildCategoryCard(sc, context,
-                    color: Colors.grey,
-                    icon: Icons.settings,
-                    text: "${langs[lang]["home"]["settings"]}",
-                    id: "settings", onTap: () {
+                buildCategoryCard(sc, context, color: Colors.grey, icon: Icons.settings, text: "${langs[lang]["home"]["settings"]}", id: "settings", onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
                     return SettingsScreen();
                   })).then((value) => loadData());
@@ -307,17 +278,14 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
             "${_converToText(cigaraManager.calculatePassedTime(), cigaraManager.upcomingEvent["time"])}",
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                .copyWith(fontSize: getProportionateScreenWidth(18)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getProportionateScreenWidth(18)),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: AutoSizeText(
               "${langs[lang]["progressDescription"][cigaraManager.upcomingEvent["id"]]}",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
               maxLines: 2,
             ),
           ),
@@ -332,17 +300,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icons.timer,
                     Colors.teal),
                 buildInfoCard(
-                    context,
-                    "${NumberFormat.currency(symbol: currency).format(cigaraManager.getSavedMoney)}",
-                    "${langs[lang]["home"]["moneyEarned"]}",
-                    Icons.account_balance_wallet,
-                    Colors.green),
-                buildInfoCard(
-                    context,
-                    "${NumberFormat("#,###").format(cigaraManager.getsavedCigarattes.round())}",
-                    "${langs[lang]["home"]["cigarratesnotsmoked"]}",
-                    Icons.smoke_free,
-                    Colors.red)
+                    context, "${NumberFormat.currency(symbol: currency).format(cigaraManager.getSavedMoney)}", "${langs[lang]["home"]["moneyEarned"]}", Icons.account_balance_wallet, Colors.green),
+                buildInfoCard(context, "${NumberFormat("#,###").format(cigaraManager.getsavedCigarattes.round())}", "${langs[lang]["home"]["cigarratesnotsmoked"]}", Icons.smoke_free, Colors.red)
               ],
             ),
           ),
@@ -374,10 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? 6
                         : 10),
               ),
-              buildDayItem(
-                  count: i % 365,
-                  checked: cigaraManager.calculatePassedTime().inDays + 1 > i,
-                  current: cigaraManager.calculatePassedTime().inDays + 1 == i),
+              buildDayItem(count: i % 365, checked: cigaraManager.calculatePassedTime().inDays + 1 > i, current: cigaraManager.calculatePassedTime().inDays + 1 == i),
               SizedBox(
                 width: getProportionateScreenWidth(days > 100
                     ? 3
@@ -401,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return "";
   }
 
-  Column buildDayItem({int count, bool checked, bool current}) {
+  Column buildDayItem({required int count, required bool checked, required bool current}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -418,7 +374,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 : Icon(
                     Icons.adjust,
-                    color: Theme.of(context).backgroundColor,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                   ),
         SizedBox(
           height: 4,
@@ -426,17 +382,9 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           padding: EdgeInsets.all(getProportionateScreenWidth(12)),
           decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.circular(getProportionateScreenWidth(24)),
+              borderRadius: BorderRadius.circular(getProportionateScreenWidth(24)),
               color: checked ? Colors.lightGreen : Colors.grey[100],
-              boxShadow: [
-                BoxShadow(
-                    color: kShadowColor.withOpacity(.32),
-                    blurRadius: 12,
-                    offset: Offset(5, 5)),
-                BoxShadow(
-                    color: Colors.white, blurRadius: 12, offset: Offset(-5, -5))
-              ]),
+              boxShadow: [BoxShadow(color: kShadowColor.withOpacity(.32), blurRadius: 12, offset: Offset(5, 5)), BoxShadow(color: Colors.white, blurRadius: 12, offset: Offset(-5, -5))]),
           child: AutoSizeText(
             "$count",
             style: TextStyle(color: checked ? Colors.white : Colors.grey),
@@ -447,8 +395,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Padding buildInfoCard(BuildContext context, String title, String text,
-      IconData icon, Color color) {
+  Padding buildInfoCard(BuildContext context, String title, String text, IconData icon, Color color) {
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
       child: SizedBox(
@@ -459,15 +406,10 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Theme.of(context).primaryIconTheme.color,
+                color: Theme.of(context).iconTheme.color!,
               ),
-              color: Theme.of(context).backgroundColor,
-              boxShadow: [
-                BoxShadow(
-                    color: kShadowColor.withOpacity(.32),
-                    offset: Offset(6, 6),
-                    blurRadius: 12)
-              ]),
+              color: Theme.of(context).scaffoldBackgroundColor,
+              boxShadow: [BoxShadow(color: kShadowColor.withOpacity(.32), offset: Offset(6, 6), blurRadius: 12)]),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -479,9 +421,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: getProportionateScreenWidth(150),
                     child: AutoSizeText(
                       title,
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          fontSize: getProportionateScreenWidth(16),
-                          color: color),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getProportionateScreenWidth(16), color: color),
                       maxLines: 2,
                     ),
                   ),
@@ -494,9 +434,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 5),
               AutoSizeText(
                 text,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: getProportionateScreenWidth(14)),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, fontSize: getProportionateScreenWidth(14)),
                 maxLines: 2,
               ),
             ],
@@ -506,25 +444,19 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  InkWell buildCategoryCard(Size sc, BuildContext context,
-      {Color color, IconData icon, String text, String id, Function onTap}) {
+  InkWell buildCategoryCard(Size sc, BuildContext context, {required Color color, required IconData icon, required String text, required String id, Function()? onTap}) {
     return InkWell(
       onTap: onTap,
       child: Ink(
-        padding: EdgeInsets.symmetric(
-            horizontal: 10, vertical: getProportionateScreenHeight(15)),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: getProportionateScreenHeight(15)),
         decoration: BoxDecoration(
             border: Border.all(
-              color: Theme.of(context).primaryIconTheme.color,
+              color: Theme.of(context).iconTheme.color!,
             ),
             borderRadius: BorderRadius.circular(12),
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).scaffoldBackgroundColor,
             boxShadow: [
-              BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 15,
-                  offset: Offset(-4, -4),
-                  spreadRadius: 1.0),
+              BoxShadow(color: Colors.white, blurRadius: 15, offset: Offset(-4, -4), spreadRadius: 1.0),
             ]),
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -546,10 +478,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               AutoSizeText(
                 text,
-                style: Theme.of(context).textTheme.headline4.copyWith(
-                    color: color,
-                    fontSize: getProportionateScreenWidth(20),
-                    fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: color, fontSize: getProportionateScreenWidth(20), fontWeight: FontWeight.w600),
               ),
             ],
           ),

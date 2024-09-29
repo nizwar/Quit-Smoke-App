@@ -12,7 +12,7 @@ import 'package:quitsmoke/static/lang.dart';
 import '../size_config.dart';
 
 class GuideScreen extends StatefulWidget {
-  GuideScreen({Key key, this.cigaratteManager}) : super(key: key);
+  GuideScreen({Key? key, required this.cigaratteManager}) : super(key: key);
   final Cigaratte cigaratteManager;
 
   @override
@@ -38,10 +38,7 @@ class _GuideScreenState extends State<GuideScreen> {
 
   setCards() {
     cards = [];
-    langs[lang]["guide"].forEach((k, v) => {
-          if (v["title"].toLowerCase().contains(searchtext.toLowerCase()))
-            cards.add(createCard(v, k))
-        });
+    langs[lang]["guide"].forEach((k, v) => {if (v["title"].toLowerCase().contains(searchtext.toLowerCase())) cards.add(createCard(v, k))});
     setState(() {});
   }
 
@@ -71,8 +68,7 @@ class _GuideScreenState extends State<GuideScreen> {
             children: [
               buildHeader(context, offset),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -103,9 +99,7 @@ class _GuideScreenState extends State<GuideScreen> {
                     ),
                     Text(
                       langs[lang]["guideps"]["guides"],
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          fontSize: getProportionateScreenWidth(22),
-                          color: Colors.black),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getProportionateScreenWidth(22), color: Colors.black),
                     ),
                     Container(
                       width: double.infinity,
@@ -132,10 +126,7 @@ class _GuideScreenState extends State<GuideScreen> {
         height: getProportionateScreenHeight(350),
         width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Color(0xFFD66D75), Color(0XFFE29587)]),
+          gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [Color(0xFFD66D75), Color(0XFFE29587)]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -154,15 +145,11 @@ class _GuideScreenState extends State<GuideScreen> {
                     ),
                   ),
                   Positioned(
-                    top: (offset < 0)
-                        ? 0
-                        : offset + getProportionateScreenWidth(40),
+                    top: (offset < 0) ? 0 : offset + getProportionateScreenWidth(40),
                     left: getProportionateScreenWidth(140),
                     child: Text(
                       langs[lang]["guideps"]["guideto"],
-                      style: Theme.of(context).textTheme.headline3.copyWith(
-                          color: Colors.white,
-                          fontSize: getProportionateScreenWidth(32)),
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(32)),
                     ),
                   ),
                   Container()
@@ -178,9 +165,7 @@ class _GuideScreenState extends State<GuideScreen> {
   Widget createCard(Map i, String id) {
     print(i["content"][0]["text"].runtimeType == [].runtimeType);
     return PreventCard(
-      text: i["content"][0]["text"][0].length == 1
-          ? i["content"][0]["text"]
-          : i["content"][0]["text"][0],
+      text: i["content"][0]["text"][0].length == 1 ? i["content"][0]["text"] : i["content"][0]["text"][0],
       image: i["image"],
       title: i["title"],
       id: id,
@@ -210,8 +195,7 @@ class _GuideScreenState extends State<GuideScreen> {
           ),
           Text(
             "${langs[lang]["home"]["guide"]}",
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
-                color: Colors.white, fontSize: getProportionateScreenWidth(26)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(26)),
           )
         ],
       ),
@@ -224,8 +208,7 @@ class MyClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0, size.height - 80);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 80);
+    path.quadraticBezierTo(size.width / 2, size.height, size.width, size.height - 80);
     path.lineTo(size.width, 0);
     path.close();
     return path;
@@ -242,8 +225,7 @@ class PreventCard extends StatelessWidget {
   final String title;
   final String text;
   final String id;
-  const PreventCard({Key key, this.image, this.title, this.text, this.id})
-      : super(key: key);
+  const PreventCard({Key? key, required this.image, required this.title, required this.text, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -293,9 +275,7 @@ class PreventCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: Theme.of(context).textTheme.bodyText2.copyWith(
-                            fontSize: getProportionateScreenWidth(16),
-                            color: Colors.black),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getProportionateScreenWidth(16), color: Colors.black),
                       ),
                       SizedBox(
                         height: 10,

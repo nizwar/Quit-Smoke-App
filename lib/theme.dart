@@ -8,24 +8,21 @@ ThemeData themeData(BuildContext context) {
   return ThemeData(
     appBarTheme: appBarTheme,
     primaryColor: kPrimaryColor,
-    accentColor: kAccentLightColor,
+    // accentColor: kAccentLightColor,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: ColorScheme.light(
       secondary: kSecondaryLightColor,
       // on light theme surface = Colors.white by default
     ),
-    backgroundColor: Colors.white,
+    // backgroundColor: Colors.white,
     iconTheme: IconThemeData(color: kBodyTextColorLight),
-    accentIconTheme: IconThemeData(color: kAccentIconLightColor),
+    // accentIconTheme: IconThemeData(color: kAccentIconLightColor),
     primaryIconTheme: IconThemeData(color: kPrimaryIconLightColor),
     textTheme: GoogleFonts.quicksandTextTheme().copyWith(
-      bodyText1: GoogleFonts.quicksand().copyWith(color: kBodyTextColorLight),
-      bodyText2: GoogleFonts.quicksand()
-          .copyWith(color: kBodyTextColorLight, fontWeight: FontWeight.bold),
-      headline4: GoogleFonts.quicksand()
-          .copyWith(color: kTitleTextLightColor, fontSize: 32),
-      headline1: GoogleFonts.quicksand()
-          .copyWith(color: kTitleTextLightColor, fontSize: 80),
+      bodyLarge: GoogleFonts.quicksand().copyWith(color: kBodyTextColorLight),
+      bodyMedium: GoogleFonts.quicksand().copyWith(color: kBodyTextColorLight, fontWeight: FontWeight.bold),
+      headlineMedium: GoogleFonts.quicksand().copyWith(color: kTitleTextLightColor, fontSize: 32),
+      displayLarge: GoogleFonts.quicksand().copyWith(color: kTitleTextLightColor, fontSize: 80),
     ),
   );
 }
@@ -34,22 +31,21 @@ ThemeData themeData(BuildContext context) {
 ThemeData darkThemeData(BuildContext context) {
   return ThemeData.dark().copyWith(
     primaryColor: kPrimaryColor,
-    accentColor: kAccentDarkColor,
+    // accentColor: kAccentDarkColor,
     scaffoldBackgroundColor: Color(0xFF0D0C0E),
     appBarTheme: appBarTheme,
     colorScheme: ColorScheme.light(
       secondary: kSecondaryDarkColor,
       surface: kSurfaceDarkColor,
     ),
-    backgroundColor: kBackgroundDarkColor,
     iconTheme: IconThemeData(color: kBodyTextColorDark),
-    accentIconTheme: IconThemeData(color: kAccentIconDarkColor),
+    // accentIconTheme: IconThemeData(color: kAccentIconDarkColor),
     primaryIconTheme: IconThemeData(color: kPrimaryIconDarkColor),
     textTheme: GoogleFonts.latoTextTheme().copyWith(
-      bodyText1: TextStyle(color: kBodyTextColorDark),
-      bodyText2: TextStyle(color: kBodyTextColorDark),
-      headline4: TextStyle(color: kTitleTextDarkColor, fontSize: 32),
-      headline1: TextStyle(color: kTitleTextDarkColor, fontSize: 80),
+      bodyLarge: TextStyle(color: kBodyTextColorDark),
+      bodyMedium: TextStyle(color: kBodyTextColorDark),
+      headlineLarge: TextStyle(color: kTitleTextDarkColor, fontSize: 32),
+      headlineMedium: TextStyle(color: kTitleTextDarkColor, fontSize: 80),
     ),
   );
 }

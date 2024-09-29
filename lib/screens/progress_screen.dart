@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ import '../size_config.dart';
 
 class ProgressPage extends StatefulWidget {
   final Cigaratte cigaratteManager;
-  ProgressPage({Key key, this.cigaratteManager}) : super(key: key);
+  ProgressPage({Key? key, required this.cigaratteManager}) : super(key: key);
 
   @override
   _ProgressPageState createState() => _ProgressPageState();
@@ -21,7 +20,7 @@ class ProgressPage extends StatefulWidget {
 
 class _ProgressPageState extends State<ProgressPage> {
   String lang = "";
-  Timer statetimer;
+  late Timer statetimer;
   @override
   void initState() {
     super.initState();
@@ -48,13 +47,7 @@ class _ProgressPageState extends State<ProgressPage> {
     }
   }
 
-  double _getPercentage(Duration passed, Duration requiredTime) =>
-      passed > requiredTime
-          ? 100
-          : 100 -
-              ((requiredTime.inSeconds - passed.inSeconds) /
-                  requiredTime.inSeconds *
-                  100);
+  double _getPercentage(Duration passed, Duration requiredTime) => passed > requiredTime ? 100 : 100 - ((requiredTime.inSeconds - passed.inSeconds) / requiredTime.inSeconds * 100);
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +63,7 @@ class _ProgressPageState extends State<ProgressPage> {
                   itemBuilder: (context, i) {
                     return Container(
                         decoration: BoxDecoration(),
-                        padding:
-                            EdgeInsets.all(getProportionateScreenWidth(16)),
+                        padding: EdgeInsets.all(getProportionateScreenWidth(16)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -80,32 +72,14 @@ class _ProgressPageState extends State<ProgressPage> {
                               child: Column(
                                 children: [
                                   AutoSizeText(
-                                    _converToText(
-                                        widget.cigaratteManager
-                                            .calculatePassedTime(),
-                                        htimes[i]["time"]),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2
-                                        .copyWith(
-                                            color: Colors.white,
-                                            fontSize:
-                                                getProportionateScreenWidth(
-                                                    22)),
+                                    _converToText(widget.cigaratteManager.calculatePassedTime(), htimes[i]["time"]),
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(22)),
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                   ),
                                   AutoSizeText(
-                                    langs[lang]["progressDescription"]
-                                        [htimes[i]["id"]],
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline4
-                                        .copyWith(
-                                            color: Colors.white,
-                                            fontSize:
-                                                getProportionateScreenWidth(
-                                                    15)),
+                                    langs[lang]["progressDescription"][htimes[i]["id"]],
+                                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(15)),
                                     textAlign: TextAlign.center,
                                     maxLines: 3,
                                   ),
@@ -119,17 +93,12 @@ class _ProgressPageState extends State<ProgressPage> {
                                 height: getProportionateScreenHeight(42),
                                 child: CustomPaint(
                                   child: Center(
-                                    child: _getPercentage(
-                                                widget.cigaratteManager
-                                                    .calculatePassedTime(),
-                                                htimes[i]["time"]) ==
-                                            100
+                                    child: _getPercentage(widget.cigaratteManager.calculatePassedTime(), htimes[i]["time"]) == 100
                                         ? Icon(
                                             Icons.check,
                                             color: Colors.lightGreenAccent,
                                           )
-                                        : AutoSizeText(
-                                            "${htimes[i]["time"].inDays - widget.cigaratteManager.calculatePassedTime().inDays}",
+                                        : AutoSizeText("${htimes[i]["time"].inDays - widget.cigaratteManager.calculatePassedTime().inDays}",
                                             style: TextStyle(
                                               color: Colors.lightGreenAccent,
                                             ),
@@ -137,15 +106,10 @@ class _ProgressPageState extends State<ProgressPage> {
                                             textScaleFactor: 1.0),
                                   ),
                                   painter: ProgressPainter(
-                                      completedPercentage: _getPercentage(
-                                          widget.cigaratteManager
-                                              .calculatePassedTime(),
-                                          htimes[i]["time"]),
+                                      completedPercentage: _getPercentage(widget.cigaratteManager.calculatePassedTime(), htimes[i]["time"]),
                                       circleWidth: 10,
-                                      defaultCircleColor:
-                                          Colors.lightGreenAccent,
-                                      percentageCompletedCircleColor:
-                                          Colors.grey),
+                                      defaultCircleColor: Colors.lightGreenAccent,
+                                      percentageCompletedCircleColor: Colors.grey),
                                 ),
                               ),
                             ),
@@ -180,8 +144,7 @@ class _ProgressPageState extends State<ProgressPage> {
           ),
           Text(
             "${langs[lang]["home"]["progress"]}",
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
-                color: Colors.white, fontSize: getProportionateScreenWidth(26)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(26)),
           )
         ],
       ),

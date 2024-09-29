@@ -5,12 +5,12 @@ import 'package:quitsmoke/comps/particle.dart';
 
 class ParticleSpawner with ChangeNotifier {
   List<Particle> particles = [];
-  double initialX;
-  double initialY;
+  late double initialX;
+  late double initialY;
   final Size size;
   double degree = 0;
   double sprayRadius = 70;
-  ParticleSpawner({this.size});
+  ParticleSpawner({required this.size});
   createParticles(int count) {
     final random = Random();
     initialX = size.width / 2;
@@ -27,12 +27,7 @@ class ParticleSpawner with ChangeNotifier {
     for (int i = 0; i < count; i++) {
       degree += 0.01;
 
-      particles.add(Particle(
-          color: Colors.lightGreen.withAlpha(random.nextInt(125)),
-          xval: initialX,
-          yval: initialY,
-          vvalX: sin(random.nextDouble() * 100),
-          vvalY: cos(random.nextDouble() * 100)));
+      particles.add(Particle(color: Colors.lightGreen.withAlpha(random.nextInt(125)), xval: initialX, yval: initialY, vvalX: sin(random.nextDouble() * 100), vvalY: cos(random.nextDouble() * 100)));
     }
   }
 
@@ -40,10 +35,7 @@ class ParticleSpawner with ChangeNotifier {
     for (var particle in particles) {
       particle.update();
     }
-    particles.removeWhere((element) =>
-        (initialX - element.x).abs() > sprayRadius ||
-        (initialY - element.y).abs() > sprayRadius ||
-        (element.vX.abs() < 0.1 && element.vY.abs() < 0.1));
+    particles.removeWhere((element) => (initialX - element.x).abs() > sprayRadius || (initialY - element.y).abs() > sprayRadius || (element.vX.abs() < 0.1 && element.vY.abs() < 0.1));
 
     notifyListeners();
   }

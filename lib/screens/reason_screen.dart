@@ -7,16 +7,16 @@ import 'package:quitsmoke/comps/getlang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReasonScreen extends StatefulWidget {
-  ReasonScreen({Key key}) : super(key: key);
+  ReasonScreen({Key? key}) : super(key: key);
 
   @override
   _ReasonScreenState createState() => _ReasonScreenState();
 }
 
 class _ReasonScreenState extends State<ReasonScreen> {
-  String lang;
+  late String lang;
 
-  List<String> reasons;
+  List<String>? reasons;
 
   void initState() {
     loadReasons();
@@ -26,7 +26,7 @@ class _ReasonScreenState extends State<ReasonScreen> {
 
   void loadReasons() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    String _reasons = pref.getString("reason");
+    String _reasons = pref.getString("reason") ?? "";
     if (!_reasons.startsWith("[")) {
       reasons = [_reasons];
       pref.setString("reason", jsonEncode(reasons));
@@ -64,8 +64,7 @@ class _ReasonScreenState extends State<ReasonScreen> {
           ),
           Text(
             "${langs[lang]["home"]["reason"]}",
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
-                color: Colors.white, fontSize: getProportionateScreenWidth(26)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(26)),
           )
         ],
       ),
@@ -94,10 +93,7 @@ class _ReasonScreenState extends State<ReasonScreen> {
               child: Center(
                 child: Text("${langs[lang]["reason"]["somegoodreasons"]}",
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline4.copyWith(
-                        color: Colors.white.withAlpha(200),
-                        fontWeight: FontWeight.w300,
-                        fontSize: getProportionateScreenWidth(36))),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white.withAlpha(200), fontWeight: FontWeight.w300, fontSize: getProportionateScreenWidth(36))),
               ),
             ),
             if (reasons != null)
@@ -107,9 +103,8 @@ class _ReasonScreenState extends State<ReasonScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     return renderListElement(index, context);
                   },
-                  itemCount: reasons.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const Divider(),
+                  itemCount: reasons?.length ?? 0,
+                  separatorBuilder: (BuildContext context, int index) => const Divider(),
                 ),
               )
           ],
@@ -123,7 +118,7 @@ class _ReasonScreenState extends State<ReasonScreen> {
     return FloatingActionButton(
       onPressed: () {
         if (!_sheetopen)
-          scaffoldState.currentState.showBottomSheet((context) => Container(
+          scaffoldState.currentState?.showBottomSheet((context) => Container(
                 padding: EdgeInsets.all(15),
                 color: Colors.white,
                 height: getProportionateScreenHeight(250),
@@ -131,31 +126,21 @@ class _ReasonScreenState extends State<ReasonScreen> {
                 child: Column(children: [
                   Text(
                     "${langs[lang]["reason"]["addnew"]}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(fontSize: getProportionateScreenWidth(22)),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: getProportionateScreenWidth(22)),
                   ),
                   Divider(),
                   TextField(
                     onChanged: (value) => newReason = value,
                     maxLines: 3,
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "${langs[lang]["reason"]["reason"]}"),
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(fontSize: getProportionateScreenWidth(22)),
+                    decoration: InputDecoration(border: InputBorder.none, hintText: "${langs[lang]["reason"]["reason"]}"),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: getProportionateScreenWidth(22)),
                   ),
                   ElevatedButton(
-                    style: TextButton.styleFrom(
-                        textStyle: const TextStyle(fontSize: 20),
-                        padding: EdgeInsets.all(8)),
+                    style: TextButton.styleFrom(textStyle: const TextStyle(fontSize: 20), padding: EdgeInsets.all(8)),
                     child: Text("${langs[lang]["wallet"]["add"]}"),
                     onPressed: () {
                       _sheetopen = false;
-                      reasons.add(newReason);
+                      reasons?.add(newReason);
                       newReason = "";
                       saveReasons();
                       setState(() {});
@@ -174,9 +159,9 @@ class _ReasonScreenState extends State<ReasonScreen> {
 
   Widget renderListElement(int index, BuildContext context) {
     return Dismissible(
-      key: Key(reasons[index]),
+      key: Key(reasons![index]),
       onDismissed: (direction) {
-        reasons.removeAt(index);
+        reasons?.removeAt(index);
         saveReasons();
       },
       confirmDismiss: (DismissDirection direction) async {
@@ -204,36 +189,23 @@ class _ReasonScreenState extends State<ReasonScreen> {
       },
       background: Container(
         padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32), color: Colors.red),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(32), color: Colors.red),
         child: Center(
           child: Text(
             "${langs[lang]["misc"]["delete"]}",
-            style: TextStyle(
-                color: Colors.white, fontSize: getProportionateScreenWidth(22)),
+            style: TextStyle(color: Colors.white, fontSize: getProportionateScreenWidth(22)),
           ),
         ),
       ),
       child: Container(
         padding: EdgeInsets.all(getProportionateScreenWidth(20)),
         decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 10,
-                  color: Colors.deepPurple[600],
-                  spreadRadius: 2,
-                  offset: Offset(3, 2))
-            ],
-            borderRadius: BorderRadius.circular(32),
-            color: Colors.deepPurple[400]),
+            boxShadow: [BoxShadow(blurRadius: 10, color: Colors.deepPurple.shade600, spreadRadius: 2, offset: Offset(3, 2))], borderRadius: BorderRadius.circular(32), color: Colors.deepPurple[400]),
         child: Row(
           children: [
             Flexible(
-              child: Text("${reasons[index]}",
-                  style: Theme.of(context).textTheme.headline4.copyWith(
-                      color: Colors.white.withAlpha(200),
-                      fontWeight: FontWeight.w300,
-                      fontSize: getProportionateScreenWidth(21))),
+              child: Text("${reasons?[index]}",
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white.withAlpha(200), fontWeight: FontWeight.w300, fontSize: getProportionateScreenWidth(21))),
             )
           ],
         ),

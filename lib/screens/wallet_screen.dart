@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:quitsmoke/comps/cigaratte.dart';
 import 'package:quitsmoke/comps/getlang.dart';
@@ -16,7 +14,7 @@ import '../size_config.dart';
 
 class WalletScreen extends StatefulWidget {
   final Cigaratte cigaratteManager;
-  WalletScreen({Key key, this.cigaratteManager}) : super(key: key);
+  WalletScreen({Key? key, required this.cigaratteManager}) : super(key: key);
 
   @override
   _WalletScreenState createState() => _WalletScreenState();
@@ -41,25 +39,17 @@ class _WalletScreenState extends State<WalletScreen> {
 
   _getTransactions() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    currency = pref.getString("currency");
+    currency = pref.getString("currency") ?? "";
     var tr = jsonDecode((pref.getString("transactionData") ?? "[]"));
     for (var e in tr) {
-      trlist.add(Transaction(
-          price: e["price"],
-          time: DateTime.parse(e["time"]),
-          title: e["title"],
-          description: e["description"] ?? ""));
+      trlist.add(Transaction(price: e["price"], time: DateTime.parse(e["time"]), title: e["title"], description: e["description"] ?? ""));
     }
     setState(() {});
   }
 
-  _addTransaction(
-      {DateTime date, double price, String title, String description}) {
+  _addTransaction({required DateTime date, required double price, required String title, required String description}) {
     if (price > currentBalance) return;
-    trlist.insert(
-        0,
-        Transaction(
-            time: date, price: price, title: title, description: description));
+    trlist.insert(0, Transaction(time: date, price: price, title: title, description: description));
     _saveTransaction();
     setState(() {});
   }
@@ -79,7 +69,7 @@ class _WalletScreenState extends State<WalletScreen> {
     pref.setString("transactionData", jsonEncode(lister));
   }
 
-  Timer statetimer;
+  late Timer statetimer;
   @override
   void initState() {
     lang = getLang();
@@ -97,7 +87,7 @@ class _WalletScreenState extends State<WalletScreen> {
     super.dispose();
   }
 
-  String _tsdescription;
+  String? _tsdescription;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -106,7 +96,7 @@ class _WalletScreenState extends State<WalletScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (!_sheetopen)
-            scaffoldState.currentState.showBottomSheet((context) => Container(
+            scaffoldState.currentState?.showBottomSheet((context) => Container(
                   padding: EdgeInsets.all(15),
                   color: Colors.white,
                   height: getProportionateScreenHeight(340),
@@ -114,56 +104,30 @@ class _WalletScreenState extends State<WalletScreen> {
                   child: Column(children: [
                     Text(
                       "${langs[lang]["wallet"]["newtransaction"]}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4
-                          .copyWith(fontSize: getProportionateScreenWidth(22)),
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: getProportionateScreenWidth(22)),
                     ),
                     TextField(
                       onChanged: (value) => _tstitle = value,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "${langs[lang]["wallet"]["title"]}"),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4
-                          .copyWith(fontSize: getProportionateScreenWidth(22)),
+                      decoration: InputDecoration(border: InputBorder.none, hintText: "${langs[lang]["wallet"]["title"]}"),
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: getProportionateScreenWidth(22)),
                     ),
                     TextField(
                       onChanged: (value) => _tsdescription = value,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "${langs[lang]["wallet"]["description"]}"),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4
-                          .copyWith(fontSize: getProportionateScreenWidth(22)),
+                      decoration: InputDecoration(border: InputBorder.none, hintText: "${langs[lang]["wallet"]["description"]}"),
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: getProportionateScreenWidth(22)),
                     ),
                     TextField(
-                      onChanged: (value) =>
-                          _amountofmoney = double.parse(value),
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "${langs[lang]["wallet"]["amount"]}"),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4
-                          .copyWith(fontSize: getProportionateScreenWidth(22)),
+                      onChanged: (value) => _amountofmoney = double.parse(value),
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
+                      decoration: InputDecoration(border: InputBorder.none, hintText: "${langs[lang]["wallet"]["amount"]}"),
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: getProportionateScreenWidth(22)),
                     ),
                     ElevatedButton(
-                      style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 20),
-                          padding: EdgeInsets.all(8)),
+                      style: TextButton.styleFrom(textStyle: const TextStyle(fontSize: 20), padding: EdgeInsets.all(8)),
                       child: Text("${langs[lang]["wallet"]["add"]}"),
                       onPressed: () {
                         _sheetopen = false;
-                        _addTransaction(
-                            date: DateTime.now(),
-                            price: _amountofmoney,
-                            title: _tstitle,
-                            description: _tsdescription);
+                        _addTransaction(date: DateTime.now(), price: _amountofmoney, title: _tstitle, description: _tsdescription ?? "");
                         Navigator.pop(context);
                       },
                     )
@@ -189,18 +153,14 @@ class _WalletScreenState extends State<WalletScreen> {
                 children: [
                   Text(
                     "${langs[lang]["wallet"]["balance"]}",
-                    style: Theme.of(context).textTheme.headline4.copyWith(
-                        color: Colors.white.withAlpha(240),
-                        fontWeight: FontWeight.w300),
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white.withAlpha(240), fontWeight: FontWeight.w300),
                     textAlign: TextAlign.center,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: AutoSizeText(
                       "${NumberFormat.currency(symbol: currency).format(currentBalance)}",
-                      style: Theme.of(context).textTheme.headline4.copyWith(
-                          color: Colors.white,
-                          fontSize: getProportionateScreenWidth(42)),
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(42)),
                       textAlign: TextAlign.center,
                       maxLines: 1,
                     ),
@@ -210,50 +170,22 @@ class _WalletScreenState extends State<WalletScreen> {
                           children: [
                             Text(
                               "${langs[lang]["wallet"]["daily"]} ${widget.cigaratteManager.moneyPerSecond * 60 * 60 * 24} $currency",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  .copyWith(
-                                      color: Colors.white.withAlpha(200),
-                                      fontWeight: FontWeight.w300,
-                                      fontSize:
-                                          getProportionateScreenWidth(22)),
+                              style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white.withAlpha(200), fontWeight: FontWeight.w300, fontSize: getProportionateScreenWidth(22)),
                               textAlign: TextAlign.center,
                             ),
                             Text(
                               "${langs[lang]["wallet"]["weekly"]} ${widget.cigaratteManager.moneyPerSecond * 60 * 60 * 24 * 7} $currency",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  .copyWith(
-                                      color: Colors.white.withAlpha(200),
-                                      fontWeight: FontWeight.w300,
-                                      fontSize:
-                                          getProportionateScreenWidth(22)),
+                              style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white.withAlpha(200), fontWeight: FontWeight.w300, fontSize: getProportionateScreenWidth(22)),
                               textAlign: TextAlign.center,
                             ),
                             Text(
                               "${langs[lang]["wallet"]["monthly"]} ${widget.cigaratteManager.moneyPerSecond * 60 * 60 * 24 * 30} $currency",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  .copyWith(
-                                      color: Colors.white.withAlpha(200),
-                                      fontWeight: FontWeight.w300,
-                                      fontSize:
-                                          getProportionateScreenWidth(22)),
+                              style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white.withAlpha(200), fontWeight: FontWeight.w300, fontSize: getProportionateScreenWidth(22)),
                               textAlign: TextAlign.center,
                             ),
                             Text(
                               "${langs[lang]["wallet"]["yearly"]} ${widget.cigaratteManager.moneyPerSecond * 60 * 60 * 24 * 365} $currency",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4
-                                  .copyWith(
-                                      color: Colors.white.withAlpha(200),
-                                      fontWeight: FontWeight.w300,
-                                      fontSize:
-                                          getProportionateScreenWidth(22)),
+                              style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white.withAlpha(200), fontWeight: FontWeight.w300, fontSize: getProportionateScreenWidth(22)),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -280,15 +212,8 @@ class _WalletScreenState extends State<WalletScreen> {
                 padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                     color: Colors.green[700],
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(22),
-                        topRight: Radius.circular(22)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: kShadowColor.withOpacity(.3),
-                          blurRadius: 7,
-                          offset: Offset(0, -3))
-                    ]),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(22), topRight: Radius.circular(22)),
+                    boxShadow: [BoxShadow(color: kShadowColor.withOpacity(.3), blurRadius: 7, offset: Offset(0, -3))]),
                 child: ListView.builder(
                   itemCount: trlist.length,
                   itemBuilder: (context, index) {
@@ -302,21 +227,17 @@ class _WalletScreenState extends State<WalletScreen> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: Text("${langs[lang]["misc"]["confirm"]}"),
-                              content: Text(
-                                  "${langs[lang]["misc"]["areusuredelete"]}"),
+                              content: Text("${langs[lang]["misc"]["areusuredelete"]}"),
                               actions: <Widget>[
                                 TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(true),
+                                    onPressed: () => Navigator.of(context).pop(true),
                                     child: Text(
                                       "${langs[lang]["misc"]["delete"]}",
                                       style: TextStyle(color: Colors.red),
                                     )),
                                 TextButton(
-                                  onPressed: () =>
-                                      Navigator.of(context).pop(false),
-                                  child:
-                                      Text("${langs[lang]["misc"]["cancel"]}"),
+                                  onPressed: () => Navigator.of(context).pop(false),
+                                  child: Text("${langs[lang]["misc"]["cancel"]}"),
                                 ),
                               ],
                             );
@@ -326,32 +247,20 @@ class _WalletScreenState extends State<WalletScreen> {
                       background: Container(
                         padding: EdgeInsets.all(12),
                         margin: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.red),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.red),
                         child: Center(
                             child: Text(
                           "DELETE",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: getProportionateScreenWidth(32)),
+                          style: TextStyle(color: Colors.white, fontSize: getProportionateScreenWidth(32)),
                         )),
                       ),
                       onDismissed: (direction) {
                         _removeTransaction(index);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Transaction removed')));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Transaction removed')));
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: kShadowColor.withOpacity(.3),
-                                  blurRadius: 7,
-                                  offset: Offset(3, 3))
-                            ]),
+                            color: Colors.green, borderRadius: BorderRadius.circular(12), boxShadow: [BoxShadow(color: kShadowColor.withOpacity(.3), blurRadius: 7, offset: Offset(3, 3))]),
                         padding: EdgeInsets.all(12),
                         margin: EdgeInsets.all(8),
                         child: Column(
@@ -363,37 +272,16 @@ class _WalletScreenState extends State<WalletScreen> {
                               children: [
                                 Text(
                                   item.title,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontSize:
-                                              getProportionateScreenWidth(22)),
+                                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(22)),
                                 ),
-                                if (item.description != null &&
-                                    item.description != "" &&
-                                    item.description.length > 2)
+                                if (item.description != "" && item.description.length > 2)
                                   Text(
-                                    item.description ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline4
-                                        .copyWith(
-                                            color: Colors.grey[100],
-                                            fontSize:
-                                                getProportionateScreenWidth(
-                                                    16)),
+                                    item.description,
+                                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.grey[100], fontSize: getProportionateScreenWidth(16)),
                                   ),
                                 Text(
                                   DateFormat.yMMMMEEEEd().format(item.time),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4
-                                      .copyWith(
-                                          color: Colors.white70,
-                                          fontSize:
-                                              getProportionateScreenWidth(16)),
+                                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white70, fontSize: getProportionateScreenWidth(16)),
                                 ),
                               ],
                             ),
@@ -402,13 +290,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               child: FittedBox(
                                 child: Text(
                                   "${NumberFormat.currency(symbol: currency).format(item.price)}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontSize:
-                                              getProportionateScreenWidth(25)),
+                                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(25)),
                                 ),
                               ),
                             ),
@@ -450,8 +332,7 @@ class _WalletScreenState extends State<WalletScreen> {
           ),
           Text(
             "${langs[lang]["home"]["wallet"]}",
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
-                color: Colors.white, fontSize: getProportionateScreenWidth(26)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: getProportionateScreenWidth(26)),
           )
         ],
       ),
@@ -464,7 +345,6 @@ class Transaction {
   final DateTime time;
   final String title;
   final String description;
-  get toJson =>
-      {"price": price, "time": time.toIso8601String(), "title": title};
-  Transaction({this.price, this.time, this.title, this.description = ""});
+  get toJson => {"price": price, "time": time.toIso8601String(), "title": title};
+  Transaction({required this.price, required this.time, required this.title, this.description = ""});
 }

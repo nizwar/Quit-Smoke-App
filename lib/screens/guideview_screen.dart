@@ -6,7 +6,7 @@ import 'package:quitsmoke/size_config.dart';
 import 'package:quitsmoke/static/lang.dart';
 
 class GuideViewScreen extends StatefulWidget {
-  GuideViewScreen({Key key, this.id, this.lang}) : super(key: key);
+  GuideViewScreen({Key? key, required this.id, required this.lang}) : super(key: key);
   final String id;
   final String lang;
   @override
@@ -30,10 +30,7 @@ class _GuideViewScreenState extends State<GuideViewScreen> {
         padding: EdgeInsets.all(20),
         width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.white, Colors.white]),
+          gradient: LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [Colors.white, Colors.white]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -54,9 +51,7 @@ class _GuideViewScreenState extends State<GuideViewScreen> {
                 ),
                 AutoSizeText(
                   "${actual["title"]}",
-                  style: Theme.of(context).textTheme.headline3.copyWith(
-                      color: Colors.black,
-                      fontSize: getProportionateScreenWidth(26)),
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.black, fontSize: getProportionateScreenWidth(26)),
                   maxLines: 2,
                   textAlign: TextAlign.center,
                 ),
@@ -81,11 +76,7 @@ class _GuideViewScreenState extends State<GuideViewScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            buildHeader(context),
-            for (Map i in content)
-              buildTextContainer(context, i['title'], i['text'])
-          ],
+          children: [buildHeader(context), for (Map i in content) buildTextContainer(context, i['title'], i['text'])],
         ),
       ),
     );
@@ -95,24 +86,13 @@ class _GuideViewScreenState extends State<GuideViewScreen> {
     return Container(
       margin: EdgeInsets.all(8),
       padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                blurRadius: 12,
-                color: kShadowColor.withAlpha(50),
-                offset: Offset(0, 0))
-          ]),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white, boxShadow: [BoxShadow(blurRadius: 12, color: kShadowColor.withAlpha(50), offset: Offset(0, 0))]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "$title",
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                .copyWith(fontSize: getProportionateScreenWidth(26)),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getProportionateScreenWidth(26)),
             textAlign: TextAlign.left,
           ),
           new Divider(
@@ -121,9 +101,7 @@ class _GuideViewScreenState extends State<GuideViewScreen> {
           text[0].length == 1
               ? Text(
                   "$text",
-                  style: Theme.of(context).textTheme.bodyText1.copyWith(
-                      fontSize: getProportionateScreenWidth(22),
-                      color: Colors.black.withOpacity(.8)),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: getProportionateScreenWidth(22), color: Colors.black.withOpacity(.8)),
                   textAlign: TextAlign.left,
                 )
               : Column(
@@ -133,12 +111,7 @@ class _GuideViewScreenState extends State<GuideViewScreen> {
                         children: [
                           Text(
                             "$i",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1
-                                .copyWith(
-                                    fontSize: getProportionateScreenWidth(22),
-                                    color: Colors.black.withOpacity(.8)),
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: getProportionateScreenWidth(22), color: Colors.black.withOpacity(.8)),
                             textAlign: TextAlign.left,
                           ),
                           SizedBox(

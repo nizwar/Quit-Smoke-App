@@ -1,19 +1,16 @@
 import 'package:quitsmoke/static/htimes.dart';
+
 class Cigaratte {
   final DateTime startDate;
   final double pricePerCigaratte;
   final int dailyCigarattes;
   final String lang;
 
-  double cigarattePerSecond;
-  double moneyPerSecond;
+  late double cigarattePerSecond;
+  late double moneyPerSecond;
   double toUp = 0;
 
-  Cigaratte(
-      {this.startDate,
-      this.pricePerCigaratte,
-      this.dailyCigarattes,
-      this.lang}) {
+  Cigaratte({required this.startDate, required this.pricePerCigaratte, required this.dailyCigarattes, required this.lang}) {
     cigarattePerSecond = dailyCigarattes / (24 * 60 * 60.0);
     moneyPerSecond = cigarattePerSecond * pricePerCigaratte;
   }
@@ -33,8 +30,7 @@ class Cigaratte {
 
   double get getdayPercentage {
     final now = DateTime.now();
-    DateTime midnight =
-        startDate.add(Duration(days: calculatePassedTime().inDays + 1));
+    DateTime midnight = startDate.add(Duration(days: calculatePassedTime().inDays + 1));
     return 100 - (midnight.difference(now).inSeconds * 100 / (24 * 60 * 60));
   }
 
@@ -56,9 +52,7 @@ class Cigaratte {
   List<int> get generateDayItem {
     List<int> daylist = [];
 
-    for (int i = calculatePassedTime().inDays - 2;
-        i < calculatePassedTime().inDays + 5;
-        i++) {
+    for (int i = calculatePassedTime().inDays - 2; i < calculatePassedTime().inDays + 5; i++) {
       if (i > 0) daylist.add(i);
     }
     for (int i = calculatePassedTime().inDays - 3; i < 0; i++) {
