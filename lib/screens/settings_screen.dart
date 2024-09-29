@@ -49,7 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     pref.setDouble("pricePerCigaratte", pricePerCigaratte!);
     pref.setInt("dailycigarattes", dailyCigarattes!);
     pref.setString("currency", currency!);
-    pref.setString("startTime", stopDate.toIso8601String());
+    pref.setString("startTime", stopDate?.toIso8601String() ?? "");
     Navigator.pop(context);
   }
 
@@ -124,10 +124,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Column(
                   children: [
                     Text("${langs[lang]["settings"]["youstopped"]}"),
-                    Text(
-                      "${DateFormat.yMMMMEEEEd().format(stopDate)}\n${DateFormat.Hms().format(stopDate)}",
-                      textAlign: TextAlign.center,
-                    ),
+                    if (stopDate != null)
+                      Text(
+                        "${DateFormat.yMMMMEEEEd().format(stopDate!)}\n${DateFormat.Hms().format(stopDate!)}",
+                        textAlign: TextAlign.center,
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -163,7 +164,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  late DateTime stopDate;
+  DateTime? stopDate;
 
   _pickDate(BuildContext context) async {
     DateTime? date = await showDatePicker(
@@ -178,7 +179,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       setState(() {
         stopDate = date;
         print(t.hour);
-        stopDate = stopDate.add(Duration(hours: t.hour, minutes: t.minute));
+        stopDate = stopDate?.add(Duration(hours: t.hour, minutes: t.minute));
       });
     print(stopDate);
   }

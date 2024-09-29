@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String lang = "";
   String currency = "";
   String tiptext = "";
+  bool loading = true;
 
   Future<void> loadData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -42,6 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
       startDate: DateTime.parse(pref.getString("startTime") ?? DateTime.now().toString()),
       lang: lang,
     );
+    setState(() {
+      loading = false;
+    });
   }
 
   int lastRndInt = -1;
@@ -146,6 +150,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size sc = MediaQuery.of(context).size;
     SizeConfig().init(context);
+    if (loading) {
+      return Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
     return Scaffold(
       appBar: buildAppBar(context),
       body: Column(
@@ -163,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 CustomPaint(
                   painter: ProgressPainter(
-                    completedPercentage: cigaraManager.getdayPercentage ,
+                    completedPercentage: cigaraManager.getdayPercentage,
                     circleWidth: 15,
                     defaultCircleColor: Colors.lightGreen,
                     percentageCompletedCircleColor: Colors.grey.withOpacity(0.2),

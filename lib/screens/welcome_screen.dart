@@ -232,7 +232,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 AvatarGlow(
                   glowColor: Colors.blue,
                   // endRadius: 180.0,
-                  glowBorderRadius: BorderRadius.circular(180),
+                  // glowBorderRadius: BorderRadius.circular(180),
                   glowCount: 1,
                   startDelay: Duration(milliseconds: 100),
                   duration: Duration(milliseconds: 2000),
@@ -282,7 +282,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                color: Colors.red,
+                // color: Colors.red,
                 child: router(context, index),
               ),
               Column(
